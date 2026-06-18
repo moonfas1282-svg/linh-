@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "RunPulse",
+    "slug": "runpulse",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "runpulse",
+    "android": {
+      "package": "com.moonfas.runpulse",
+      "versionCode": 2,
+      "adaptiveIcon": {
+        "backgroundColor": "#101D37",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "ACTIVITY_RECOGNITION",
+        "POST_NOTIFICATIONS"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "RunPulse cần vị trí để đo quãng đường, pace và calo khi chạy.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "RunPulse dùng cảm biến chuyển động để ước tính số bước và cadence."
+        }
+      ]
+    ]
+  }
+}

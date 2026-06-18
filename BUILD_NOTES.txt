@@ -1,0 +1,42 @@
+RUNPULSE 1.1.0
+==============
+
+MOI TRONG BAN NAY:
+- Cong thuc calo nang cap: ACSM (chay) + MET noi suy (dap xe), CO tinh do doc.
+- Ho so co the: them tuoi / gioi tinh / chieu cao -> calo chinh xac hon (chi can can nang van chay).
+- Them mon DAP XE (chon trUOc khi bat dau).
+- Tab BAO CAO moi: loc theo khoang ngay (7/30/90), theo mon, cu ly toi thieu, pace toi da, kem bieu do xu huong calo & km theo ngay. Du lieu keo tu Google Sheet.
+- Backend .gs them DANG KY / DANG NHAP tai khoan (mat khau hash SHA-256 + token), moi buoi tap gan theo username.
+
+=====================================================================
+QUAN TRONG - GOOGLE SHEET:
+- Ban nay them 2 cot moi (username, activity) vao sheet "Runs" va them sheet "Users".
+- NEU BAN DA CO SHEET CU (chay tu ban 1.0.0): header se khong khop va bao loi.
+  -> Cach an toan: tao mot Google Sheet MOI, dan SPREADSHEET_ID moi vao file .gs, roi chay setupSheets() lai.
+  -> Hoac: tu them 2 cot "username", "activity" ngay sau cot "run_id" trong sheet Runs, va tao sheet "Users" voi cac cot: username, password_hash, salt, token, created_at, last_login_at.
+- Sau khi dan code .gs moi: Deploy > Manage deployments > Edit > New version (de URL khong doi).
+=====================================================================
+
+CACH NHANH NHAT TREN WINDOWS:
+1. Cai Android Studio, Node.js 22 va JDK 17.
+2. Mo SDK Manager trong Android Studio, cai Android SDK Platform va Build Tools.
+3. Chay file BUILD_APK_WINDOWS.bat.
+4. APK se nam tai RunPulse-release.apk.
+
+CACH BUILD BANG GITHUB (khong can may manh - KHUYEN DUNG):
+1. Tao repository GitHub moi (Public hoac Private deu duoc).
+2. Upload toan bo thu muc nay len repo (keo tha file hoac dung git).
+3. Vao tab Actions > "Build RunPulse APK" > Run workflow > chon branch main > Run.
+4. Cho ~10-15 phut, tai artifact "RunPulse-release-apk" -> giai nen ra app-release.apk.
+5. Chep APK vao dien thoai, bat "Cai dat tu nguon khong xac dinh", roi cai.
+
+CAU HINH GOOGLE SHEET TRONG APP:
+- Mo tab Cai dat trong app.
+- Dan Apps Script Web App URL (ket thuc bang /exec) va API key (giong trong file .gs).
+- Bam LUU CAU HINH > KIEM TRA GOOGLE SHEET.
+- Sau do o phan Tai khoan: bam DANG KY (lan dau) hoac DANG NHAP.
+
+LUU Y:
+- API key nhung trong APK co the bi doc lai khi giai ma. Chi nen dung cho app ca nhan / nhom nho.
+- Khi bat dau chay, cap quyen vi tri CHINH XAC va "Cho phep moi luc" de GPS chay nen khi tat man hinh.
+- Mat khau duoc hash, khong luu dang goc. Neu quen mat khau phai xoa dong user trong sheet Users.
